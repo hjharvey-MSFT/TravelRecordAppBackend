@@ -1,13 +1,18 @@
 var app = require('express')(); // Create an instance of an Express app
 
-var mobileApp = require('azure-mobile-apps')(); // Create an instance of a Mobile App with default settings
+//var mobileApp = require('azure-mobile-apps')(); // Create an instance of a Mobile App with default settings
 
-module.exports = {
+var mobileApp = azureMobileApps({
+    // Explicitly enable the Azure Mobile Apps home page
+    homePage: true,
+    // Explicitly enable swagger support. UI support is enabled by
+    // installing the swagger-ui npm module.
+    // swagger: true,
+    // App will use MS_SqliteFilename or MS_TableConnectionString to choose the SQLite or SQL data provider
     data: {
-        provider: 'mssql',
-        connectionString: "Server=tcp:lackrinnodejs-test-server.database.windows.net,1433;Initial Catalog=lackrinNodeJS-test-Database;Persist Security Info=False;User ID=lackrin;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+        dynamicSchema: true
     }
-};
+});
 
 mobileApp.tables.add('Post'); // Add a table for 'Post' with default settings
 mobileApp.tables.add('Users'); // Add a table for 'Users' (Plural, because user is reserved word in SQL)
