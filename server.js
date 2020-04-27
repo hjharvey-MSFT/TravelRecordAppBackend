@@ -11,6 +11,7 @@ var mobileApp = require('azure-mobile-apps')
     // App will use MS_SqliteFilename or MS_TableConnectionString to choose the SQLite or SQL data provider
     data: {
         dynamicSchema: true
+        }
     }
 ); // Create an instance of a Mobile App with default settings
 
